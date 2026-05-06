@@ -73,10 +73,10 @@ Risk distribution
 Actual vs predicted comparison
 
 🛠️ Tech Stack
-
-Python (Pandas, NumPy, Scikit-learn)
+SQL (Exploratory Data Analysis)
+Python (Pandas,Scikit-learn)
 Power BI (Dashboard & Visualization)
-Excel (Data preprocessing)
+
 💡 Key Learning
 
 This project highlighted that:
