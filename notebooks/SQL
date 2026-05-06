@@ -1,0 +1,64 @@
+select count(*) from itsm_cleaned;
+select made_sla,count(*) from itsm_cleaned group by made_sla;
+select ROUND(COUNT(*) FILTER(where made_sla=False)*100.00/count(*),2) as breach_rate_percent from itsm_cleaned;     -- result = 6.52%
+
+SELECT 
+    category,
+    ROUND(
+        COUNT(*) FILTER (WHERE made_sla = FALSE) * 100.0 / COUNT(*), 
+        2
+    ) AS breach_rate,
+    COUNT(*) AS total_tickets
+FROM itsm_cleaned
+GROUP BY category having count(*)>500
+ORDER BY breach_rate desc limit 5;
+
+
+
+SELECT 
+    priority,
+    ROUND(
+        COUNT(*) FILTER (WHERE made_sla = FALSE) * 100.0 / COUNT(*), 
+        2
+    ) AS breach_rate,
+    COUNT(*) AS total_tickets
+FROM itsm_cleaned
+GROUP BY priority
+ORDER BY breach_rate desc;
+
+
+SELECT 
+    priority,category,
+    ROUND(
+        COUNT(*) FILTER (WHERE made_sla = FALSE) * 100.0 / COUNT(*), 
+        2
+    ) AS breach_rate,
+    COUNT(*) AS total_tickets
+FROM itsm_cleaned
+GROUP BY priority,category having count(*)>500
+ORDER BY breach_rate desc;
+
+
+
+SELECT 
+    EXTRACT(HOUR FROM TO_TIMESTAMP(opened_at, 'YYYY-MM-DD HH24:MI:SS')) AS hour_of_day,
+    ROUND(
+        COUNT(*) FILTER (WHERE made_sla = FALSE) * 100.0 / COUNT(*), 
+        2
+    ) AS breach_rate,
+    COUNT(*) AS total_tickets
+FROM itsm_cleaned
+GROUP BY hour_of_day having count(*)>500
+ORDER BY breach_rate desc limit 10;
+
+SELECT 
+    TO_CHAR(
+        TO_TIMESTAMP(opened_at, 'YYYY-MM-DD HH24:MI:SS'), 
+        'HH12 AM'
+    ) AS hour_label,
+    ROUND(
+        COUNT(*) FILTER (WHERE made_sla = FALSE) * 100.0 / COUNT(*),        2    ) AS breach_rate,
+    COUNT(*) AS total_tickets
+FROM itsm_cleaned
+GROUP BY hour_label having count(*)>500
+ORDER BY breach_rate desc limit 10;
