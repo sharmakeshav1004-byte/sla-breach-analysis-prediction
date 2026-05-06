@@ -73,16 +73,23 @@ Risk distribution
 Actual vs predicted comparison
 
 🛠️ Tech Stack
+
 SQL (Exploratory Data Analysis)
+
 Python (Pandas,Scikit-learn)
+
 Power BI (Dashboard & Visualization)
 
 💡 Key Learning
 
 This project highlighted that:
 A model does not need perfect accuracy to be useful — even moderate performance can drive meaningful business decisions when combined with proper analysis.
-📌 Conclusion
+
+📌 Conclusion:
+
 The project demonstrates how combining data analysis + machine learning + visualization can help organizations:
+
 Identify SLA bottlenecks
+
 Prioritize high-risk incidents
 Improve operational efficiency
